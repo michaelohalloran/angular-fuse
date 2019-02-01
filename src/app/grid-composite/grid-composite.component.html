@@ -1,0 +1,54 @@
+<div class="wrapper">
+
+
+  <div class="col">
+    <div class="grid-cell">Key</div>
+    <div class="grid-cell" *ngFor="let key of keys">{{key}}</div>
+  </div>
+
+  <!-- this could be wrapped <div class="grid-row" *ngFor= etc.> -->
+  <!-- <div class="grid-cell" *ngFor="let feature of features">Feature {{feature.id}}</div> -->
+    <grid-column
+      class="col" 
+      *ngFor="let feature of features; let i = index"
+      (click)="toggleSelected(i)"
+      (click)="setSelected(feature, i)"
+      [ngStyle]="{backgroundColor: feature.color}"
+      [rowName]="getRowName(i)"
+      [feature]="feature"
+    >
+    </grid-column>
+
+  <!-- <div class="col">
+    <div class="grid-cell">Composite</div>
+    <div class="grid-cell" *ngFor="let key of keys">''</div>
+  </div> -->
+
+  <grid-column
+    class="col"
+  >
+  </grid-column>
+
+  
+
+  <!-- <grid-row 
+    *ngFor="let feature of features; let i = index"
+    (click)="toggleSelected(i)"
+    [ngStyle]="{backgroundColor: feature.color}"
+    [rowName]="getRowName(i)"
+    [feature]="feature"
+  >
+  </grid-row> -->
+  <!-- <div class="grid-cell"
+    [ngStyle]="{backgroundColor: feature.color}"
+    (click)="toggleSelected(i)"
+  >
+    {{feature.id}}. Lat: {{feature.lat}}, Lng:{{feature.lat}}, selected: {{feature.selected}}
+  </div> -->
+
+</div>
+
+<button (click)="saveCompositeFields()">Save</button>
+
+<pre>Keys: {{keys}}</pre>
+<pre>Features: {{features | json}}</pre>

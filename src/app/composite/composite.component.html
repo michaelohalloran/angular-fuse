@@ -1,0 +1,33 @@
+<div class="flex-container">
+    <div class="flex-row">
+        <div class="flex-cell">&nbsp;</div>
+        <div class="flex-cell" *ngFor="let feature of features">Feature {{feature.id}}</div>
+        <div class="flex-cell">Composite</div>
+    </div>
+
+    <div class="flex-row" (click)="onSelectKey(key)" *ngFor="let key of rowKeys; let i = index">
+      <div class="flex-cell">{{key}}</div>
+      <div 
+        class="flex-cell" 
+        *ngFor="let feature of features; let i2 = index" 
+        (click)="onSetComposite(feature, key, i2)" 
+        [ngStyle]="{backgroundColor: feature.bgColor}"
+      >
+        {{feature[key]}}
+      </div>
+      <property-selector
+        class="flex-cell"
+        [displayVal]="setDisplay(key)"
+        [ngStyle]="{backgroundColor: setColor(key)}"
+      >
+      </property-selector>
+
+    </div>
+  </div>
+
+  <button [disabled]="!options.length" (click)="onStoreComposite()">Save</button>
+
+<li >selectedKey: {{selectedKey}}</li>
+<li>selection: {{selectedCell}}</li>
+<pre [ngStyle]="{backgroundColor: 'darkgoldenrod'}">options: {{options | json}}</pre>
+<pre [ngStyle]="{backgroundColor: 'darkgoldenrod'}">saved: {{savedComps | json}}</pre>

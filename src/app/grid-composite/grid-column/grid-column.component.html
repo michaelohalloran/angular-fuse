@@ -1,0 +1,15 @@
+<div *ngIf="feature; else composite" class="grid-item">Feature {{feature.id}}</div>
+<div *ngIf="feature" class="grid-item">{{feature.id}}</div>
+<div *ngIf="feature" class="grid-item">{{feature.lat}}</div>
+<div *ngIf="feature" class="grid-item">{{feature.lng}}</div>
+
+
+<ng-template #composite>
+  <div class="grid-item">Composite</div>
+  <!-- each div should have identifying key (i.e., what row is it?) -->
+  <!-- if currently selected key === this div's rowKey, then populate it with value and color -->
+  <!-- e.g., if I click lat row's div,  -->
+  <div class="grid-item">{{key}}</div>
+  <div class="grid-item">{{key}}</div>
+  <div class="grid-item">{{key}}</div>
+</ng-template>
