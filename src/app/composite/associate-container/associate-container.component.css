@@ -1,24 +1,36 @@
 table {
     color: black;
-    background-color: lightsalmon;
     margin: 0 auto;
-    /* border: 1px solid black; */
+    width: 80%;
+    animation: fadeIn 1s ease-in-out;
 }
 
-tr {
+table, th, td {
     border: 1px solid black;
+    border-collapse: collapse;
+    padding: 1% 4%;
 }
 
-td {
-    border: 1px solid black;
+tr:nth-of-type(even) {
+    background-color: lightsalmon;
+
 }
+
 
 .modal-btn {
     text-align: center;
     display: block;
+    color: white;
+    font-size: 1.5rem;
     background-color: cornflowerblue;
     margin: 2% auto;
     animation: fadeIn 2s ease-in-out;
+}
+
+.modal-btn:hover {
+    cursor: pointer;
+    color: cornflowerblue;
+    background-color: white;
 }
 
 .modal-init {
@@ -29,7 +41,7 @@ td {
     display: block;
     position: fixed;
     z-index: 1;
-    /* top: 0; */
+    top: 0;
     height: 100%;
     width: 100%;
     background-color: lightslategray;
@@ -45,4 +57,8 @@ td {
 
 .close-span:hover {
     cursor: pointer;
+}
+
+ul {
+    list-style: none;
 }

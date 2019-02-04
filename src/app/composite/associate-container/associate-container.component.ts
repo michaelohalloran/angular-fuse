@@ -13,6 +13,9 @@ export class AssociateContainerComponent implements OnInit {
   @Input() modalOpened: boolean;
   private modalSubscription: any;
   @Input() features: Feature[];
+  @Input() keys: string[];
+  @Input() value: any;
+  @Input() modalVals: Feature[];
   
 
   constructor(private fuserService: FuserService) { }
@@ -20,6 +23,7 @@ export class AssociateContainerComponent implements OnInit {
   ngOnInit() {
     // console.log('init status of modalOpened: ', this.modalOpened);
     console.log('received features: ', this.features);
+    console.log('received keys: ', this.keys);
     this.modalSubscription = this.fuserService.modalOpened.subscribe(
       (openStatus: boolean) => this.modalOpened = openStatus
     )
@@ -27,14 +31,22 @@ export class AssociateContainerComponent implements OnInit {
 
   onOpenModal(e: Event) {
     e.stopPropagation();
-    console.log('fired onOpen from child');
-    console.log('child opened status before opening: ', this.modalOpened);
+    //open the modal
     this.fuserService.openModal();
-    console.log('child opened status: ', this.modalOpened);
+    //get the modalVals, to be used in the view
+    this.modalVals = this.fuserService.sendModalVals();
   }
 
-  ngOnChanges() {
-    console.log('child changes modalOpened status: ', this.modalOpened);
+  onSelectModalFeatures(checked: boolean, feature: Feature) {
+    console.log('checked: ', checked);
+    this.value = feature;
+    console.log('value: ', this.value);
+    if (checked) {
+      this.fuserService.collectModalVals(this.value);
+    } else {
+      //if unchecking a value, remove it from things to be added to modal
+      this.fuserService.removeFromModalVals(this.value);
+    }
   }
 
 }

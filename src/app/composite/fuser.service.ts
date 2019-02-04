@@ -18,6 +18,7 @@ export class FuserService {
   private storedComposites: any[] = [];
   modalOpened = new Subject<boolean>();
   optionsChanged = new Subject<any[]>();
+  private modalVals: Feature[] = [];
 
   constructor() { }
 
@@ -76,9 +77,24 @@ export class FuserService {
     this.optionsChanged.next(this.options);
   }
 
+  sendModalVals() {
+    return this.modalVals;
+  }
+
   openModal() {
     console.log('fired open service');
     this.modalOpened.next(true);
+  }
+
+  collectModalVals(val: Feature) {
+    this.modalVals.push(val);
+    console.log('modalVals: ', this.modalVals);
+  }
+
+  removeFromModalVals(val: Feature) {
+    let removeIdx = this.modalVals.indexOf(val);
+    this.modalVals = [...this.modalVals.slice(0, removeIdx), ...this.modalVals.slice(removeIdx + 1)];
+    console.log('modalVals: ', this.modalVals);
   }
 
   closeModal() {

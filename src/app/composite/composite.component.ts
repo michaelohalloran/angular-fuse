@@ -17,6 +17,9 @@ export class CompositeComponent implements OnInit, OnDestroy {
   private options: any[] = [];
   private optionsSubscription: any;
   private savedComps: any[];
+  private modalOpened: boolean;
+  private modalSubscription: any;
+
 
   constructor(private fuserService: FuserService) { }
 
@@ -28,6 +31,10 @@ export class CompositeComponent implements OnInit, OnDestroy {
     this.optionsSubscription = this.fuserService.optionsChanged.subscribe(
       (options: any[]) => this.options = options
     )
+    this.modalSubscription = this.fuserService.modalOpened.subscribe(
+      (openStatus: boolean) => this.modalOpened = openStatus
+    )
+
     this.rowKeys = this.fuserService.makeRowKeys();
   }
 
@@ -75,15 +82,19 @@ export class CompositeComponent implements OnInit, OnDestroy {
   }
 
 
-  onCloseModal() {
+  onCloseModal(e: Event) {
     // this.modalOpened = false;
     // modal.modalOpened = this.modalOpened;
     // console.log('modal classes: ', modal);
-    this.fuserService.closeModal();
+    //only fire if modal is open
+    if (this.modalOpened) {
+      this.fuserService.closeModal();
+    }
   }
 
   ngOnDestroy() {
     this.optionsSubscription.unsubscribe();
+    this.modalSubscription.unsubscribe();
   }
 
 }
