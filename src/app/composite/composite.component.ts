@@ -17,6 +17,7 @@ export class CompositeComponent implements OnInit, OnDestroy {
   private options: any[] = [];
   private optionsSubscription: any;
   private savedComps: any[];
+  private modalOpened: boolean = false;
 
   constructor(private fuserService: FuserService) { }
 
@@ -72,6 +73,16 @@ export class CompositeComponent implements OnInit, OnDestroy {
   onStoreComposite() {
     //take current composite obj, push into stored array
     this.fuserService.saveComposite(this.options);
+  }
+
+  openModal(e: Event, modal: any) {
+    e.stopPropagation();
+    this.modalOpened = true;
+  }
+
+  closeModal(e: Event, modal: any) {
+    e.stopPropagation();
+    this.modalOpened = false;
   }
 
   ngOnDestroy() {

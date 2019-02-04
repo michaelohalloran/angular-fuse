@@ -61,7 +61,14 @@ export class FuserService {
   }
 
   saveComposite(arr: any[]) {
-    this.storedComposites.unshift(arr);
+    //extract just the values from options array
+    let compositeVals = arr.map(item => {
+      let key = item.row;
+      return {
+        [key]: item['val']
+      };
+    });
+    this.storedComposites.unshift(compositeVals);
     //clear options after each, so it's not overwritten
     this.resetOptions();
     this.optionsChanged.next(this.options);
