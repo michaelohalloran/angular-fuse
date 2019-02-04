@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CompositeComponent } from './composite/composite.component';
 import { PropertySelectorComponent } from './composite/property-selector/property-selector.component';
+import { AssociateContainerComponent } from './composite/associate-container/associate-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompositeComponent,
-    PropertySelectorComponent
+    PropertySelectorComponent,
+    AssociateContainerComponent
   ],
   imports: [
     BrowserModule,

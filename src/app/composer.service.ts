@@ -8,9 +8,9 @@ import { Subject } from 'rxjs';
 export class ComposerService {
 
   private features: Feature[] = [
-    {id: 1, lat: 34, lng: -120, selected: false, color: 'seagreen'},
-    {id: 2, lat: 42, lng: -87, selected: false, color: 'lightsalmon'},
-    {id: 3, lat: 37, lng: -92, selected: false, color: 'skyblue'},
+    {id: 1, lat: 34, lng: 'east', selected: false, bgColor: 'seagreen'},
+    {id: 2, lat: 42, lng: 'west', selected: false, bgColor: 'lightsalmon'},
+    {id: 3, lat: 37, lng: 'north', selected: false, bgColor: 'skyblue'},
   ];
 
   key: string = '';

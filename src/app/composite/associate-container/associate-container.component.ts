@@ -21,9 +21,6 @@ export class AssociateContainerComponent implements OnInit {
   constructor(private fuserService: FuserService) { }
 
   ngOnInit() {
-    // console.log('init status of modalOpened: ', this.modalOpened);
-    console.log('received features: ', this.features);
-    console.log('received keys: ', this.keys);
     this.modalSubscription = this.fuserService.modalOpened.subscribe(
       (openStatus: boolean) => this.modalOpened = openStatus
     )
@@ -38,9 +35,7 @@ export class AssociateContainerComponent implements OnInit {
   }
 
   onSelectModalFeatures(checked: boolean, feature: Feature) {
-    console.log('checked: ', checked);
     this.value = feature;
-    console.log('value: ', this.value);
     if (checked) {
       this.fuserService.collectModalVals(this.value);
     } else {

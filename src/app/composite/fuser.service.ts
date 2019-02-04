@@ -82,23 +82,19 @@ export class FuserService {
   }
 
   openModal() {
-    console.log('fired open service');
     this.modalOpened.next(true);
   }
 
   collectModalVals(val: Feature) {
     this.modalVals.push(val);
-    console.log('modalVals: ', this.modalVals);
   }
 
   removeFromModalVals(val: Feature) {
     let removeIdx = this.modalVals.indexOf(val);
     this.modalVals = [...this.modalVals.slice(0, removeIdx), ...this.modalVals.slice(removeIdx + 1)];
-    console.log('modalVals: ', this.modalVals);
   }
 
   closeModal() {
-    console.log('fired close service');
     this.modalOpened.next(false);
   }
 
