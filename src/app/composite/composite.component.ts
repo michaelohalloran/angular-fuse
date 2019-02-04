@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FuserService } from './fuser.service';
 
 @Component({
@@ -17,7 +17,6 @@ export class CompositeComponent implements OnInit, OnDestroy {
   private options: any[] = [];
   private optionsSubscription: any;
   private savedComps: any[];
-  private modalOpened: boolean = false;
 
   constructor(private fuserService: FuserService) { }
 
@@ -75,14 +74,12 @@ export class CompositeComponent implements OnInit, OnDestroy {
     this.fuserService.saveComposite(this.options);
   }
 
-  openModal(e: Event, modal: any) {
-    e.stopPropagation();
-    this.modalOpened = true;
-  }
 
-  closeModal(e: Event, modal: any) {
-    e.stopPropagation();
-    this.modalOpened = false;
+  onCloseModal() {
+    // this.modalOpened = false;
+    // modal.modalOpened = this.modalOpened;
+    // console.log('modal classes: ', modal);
+    this.fuserService.closeModal();
   }
 
   ngOnDestroy() {

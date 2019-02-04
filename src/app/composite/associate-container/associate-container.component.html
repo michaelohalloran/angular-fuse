@@ -1,0 +1,34 @@
+<table>
+  <thead>
+    <tr>
+      <td>Select</td>
+      <td>Feature</td>
+      <td>ID</td>
+      <td>Lat</td>
+      <td>Lng</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>Feature 1</td>
+        <td>1</td>
+        <td>87</td>
+        <td>-56</td>
+      </tr>
+
+  </thead>
+</table>
+
+  <button class="modal-btn" (click)="onOpenModal($event)">Associate</button>
+  <!-- <p *ngIf="modalOpened" [style.color]="'black'">Show this if modalOpened is true</p> -->
+  
+  <div 
+    [ngClass]="{
+      'modal': modalOpened,
+      'modal-init': !modalOpened
+    }" 
+  >
+  <span class="close-span">&times;</span>
+    <div class="modal-content">
+      <p>Data: {{testString}}</p>
+    </div>
+  </div>

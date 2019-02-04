@@ -1,18 +1,9 @@
-<div class="container" (click)="closeModal($event, modal)">
+<div class="container" (click)="onCloseModal()">
 
-  <button class="modal-btn" (click)="openModal($event, modal)">Open modal</button>
-  
-  <div [ngClass]="{
-    'modal': modalOpened,
-    'modal-init': !modalOpened
-  }" #modal>
-    <div class="modal-content">
-      <p>Modal text</p>
-    </div>
-  </div>
+  <associate-container [features]="features" #modal [modalOpened]="modalOpened"></associate-container>
   
   
-  <div class="flex-container">
+  <div #contain class="flex-container">
       <div class="flex-row">
           <div class="flex-cell">&nbsp;</div>
           <div class="flex-cell" *ngFor="let feature of features">Feature {{feature.id}}</div>

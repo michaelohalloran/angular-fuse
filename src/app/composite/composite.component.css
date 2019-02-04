@@ -5,27 +5,7 @@
     box-sizing: border-box;
 }
 
-.modal-btn {
-    text-align: center;
-    display: block;
-    background-color: cornflowerblue;
-    margin: 2% auto;
-    animation: fadeIn 2s ease-in-out;
-}
 
-.modal-init {
-    display: none;
-}
-
-.modal {
-    display: block;
-    position: fixed;
-    z-index: 1;
-    height: 100%;
-    width: 100%;
-    background-color: lightslategray;
-    animation: fadeIn 1s ease-in-out;
-}
 
 .flex-container {
     display: flex;

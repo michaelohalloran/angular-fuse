@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
+import { Feature } from '../feature.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FuserService {
 
-  private features: any[] = [
+  private features: Feature[] = [
     {id: 1, lat: 39, lng: 'east', selected: false, bgColor:'#feb236',},
     {id: 2, lat: 42, lng: 'north', selected: false, bgColor:'#d64161',},
     {id: 3, lat: 97, lng: 'west', selected: false, bgColor:'#ff7b25',},
@@ -15,6 +16,7 @@ export class FuserService {
   private keys: string[] = [];
   private options: any[] = [];
   private storedComposites: any[] = [];
+  modalOpened = new Subject<boolean>();
   optionsChanged = new Subject<any[]>();
 
   constructor() { }
@@ -72,6 +74,16 @@ export class FuserService {
     //clear options after each, so it's not overwritten
     this.resetOptions();
     this.optionsChanged.next(this.options);
+  }
+
+  openModal() {
+    console.log('fired open service');
+    this.modalOpened.next(true);
+  }
+
+  closeModal() {
+    console.log('fired close service');
+    this.modalOpened.next(false);
   }
 
 
