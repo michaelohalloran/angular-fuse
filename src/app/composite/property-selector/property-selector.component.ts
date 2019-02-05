@@ -9,9 +9,18 @@ import { FuserService } from '../fuser.service';
 export class PropertySelectorComponent implements OnInit {
 
   @Input() displayVal: string = '';
+  changeDisplay: boolean = false;
 
   constructor() { }
 
   ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('fired on changes ', changes);
+    const {previousValue, currentValue, firstChange} = changes.displayVal;
+    this.changeDisplay = (previousValue !== currentValue && !firstChange) ? true : false;
+    console.log('changeDisplay status: ', this.changeDisplay);
+    return this.changeDisplay;
+  }
 
 }
