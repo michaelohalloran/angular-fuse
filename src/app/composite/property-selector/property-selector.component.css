@@ -1,5 +1,9 @@
 .selected-val {
-    animation: fadeIn 5s ease-in-out;
+    animation: fadeIn 3s ease-in-out;
+}
+
+.selected2 {
+    animation: fadeIn 7s ease-in-out;
 }
 
 @keyframes fadeIn {
