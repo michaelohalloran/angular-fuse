@@ -63,8 +63,20 @@ export class FuserService {
     this.options = [];
   }
 
+  //to merge saved composite into a single object
+  mergeObj = obj => {
+    return obj.reduce((final, next)=> {
+      for (let key in next) {
+        final[key] = next[key];
+        return final;
+      }
+    }, {});
+  }
+
   saveComposite(arr: any[]) {
     //extract just the values from options array
+
+    //use mergeObj w/ pointer notation here?
     let compositeVals = arr.map(item => {
       let key = item.row;
       return {

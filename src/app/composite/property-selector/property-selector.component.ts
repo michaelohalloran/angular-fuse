@@ -20,15 +20,16 @@ export class PropertySelectorComponent implements OnInit {
     const {previousValue, currentValue, firstChange} = changes.displayVal;
     // this.changeDisplay = (previousValue !== currentValue && !firstChange) ? true : false;
     // this.changeDisplay = !this.changeDisplay;
+    this.changeDisplay = true;
+    // setTimeout(()=> {
+    //   console.log('hit setTimeout');
+    //   this.changeDisplay = false;
+    // }, 50);
     setTimeout(()=> {
-      console.log('hit setTimeout');
       this.changeDisplay = false;
-    }, 50);
-    setTimeout(()=> {
-      this.changeDisplay = true;
       console.log('changeDisplay status: ', this.changeDisplay);
       return this.changeDisplay;
-    }, 100);
+    }, 2000);
   }
 
   // toggleClassName(e: any) {

@@ -39,8 +39,6 @@
 }
 
 .save-btn {
-    position: relative;
-    left: 86%;
     padding: 1% 3%;
     color: white;
     font-weight: bold;
@@ -69,6 +67,7 @@ li:nth-of-type(1) {
 li:nth-of-type(2) {
     animation: slideInLeft 1s ease;
 }
+
 
 @keyframes fadeIn {
     0% {
