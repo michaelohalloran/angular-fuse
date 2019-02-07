@@ -1,6 +1,6 @@
 <div class="grid-container">
   <input type="text" [(ngModel)]="userInput">
-  <div class="box box1"><p>{{userInput}}</p></div>
-  <div class="box box2" (click)="startAnim()">{{defaultStartText}}</div>
+  <div class="box box1" [@colorChange]="changeColor"><p>{{userInput}}</p></div>
+  <div class="box box2" (click)="startAnim()"><p [@textChange]="changeText">{{defaultStartText}}</p></div>
   <div class="box box3" (click)="revertAnim()">{{defaultEndText}}</div>
 </div>
