@@ -110,6 +110,8 @@ export class FuserService {
 
   closeModal() {
     this.modalOpened.next(false);
+    //clear modalVals each time we close
+    this.modalVals = [];
   }
 
 
