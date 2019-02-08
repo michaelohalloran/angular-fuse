@@ -6,7 +6,13 @@
       <th *ngFor="let key of keys">{{key}}</th>
     </tr>
     <tr *ngFor="let feature of features">
-        <td><input type="checkbox" [value]="feature" (input)="onSelectModalFeatures($event.target.checked, feature)"></td>
+        <td>
+          <input 
+            #checkbox 
+            type="checkbox" 
+            [value]="feature" 
+            (input)="onSelectModalFeatures($event.target.checked, feature, checkbox)">
+        </td>
         <td>Feature {{feature.id}}</td>
         <td>{{feature.id}}</td>
         <td>{{feature.lat}}</td>
@@ -16,7 +22,7 @@
   </thead>
 </table>
 
-  <button class="modal-btn" (click)="onOpenModal($event)">Associate</button>
+  <button class="modal-btn" [disabled]="!checkBoxSelected" (click)="onOpenModal($event)">Associate</button>
   <!-- <p *ngIf="modalOpened" [style.color]="'black'">Show this if modalOpened is true</p> -->
   
   <div 

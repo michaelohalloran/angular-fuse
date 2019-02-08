@@ -83,7 +83,9 @@ export class FuserService {
         [key]: item['val']
       };
     });
-    this.storedComposites.unshift(compositeVals);
+    //merge into single object:
+    let compositeObj = this.mergeObj(compositeVals);
+    this.storedComposites.unshift(compositeObj);
     //clear options after each, so it's not overwritten
     this.resetOptions();
     this.optionsChanged.next(this.options);

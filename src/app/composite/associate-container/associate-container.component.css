@@ -33,6 +33,13 @@ tr:nth-of-type(even) {
     background-color: white;
 }
 
+.modal-btn:disabled, .modal-btn:hover:disabled {
+    background-color: #858585;
+    color: white;
+    cursor: auto;
+    opacity: 0.3;
+}
+
 .modal-init {
     display: none;
 }

@@ -16,7 +16,8 @@ export class AssociateContainerComponent implements OnInit {
   @Input() keys: string[];
   @Input() value: any;
   @Input() modalVals: Feature[];
-  
+  private checkBoxSelected: boolean = false;
+  private checkedInputs: any[] = [];
 
   constructor(private fuserService: FuserService) { }
 
@@ -32,9 +33,15 @@ export class AssociateContainerComponent implements OnInit {
     this.fuserService.openModal();
     //get the modalVals, to be used in the view
     this.modalVals = this.fuserService.sendModalVals();
+    //reset checkbox values and status (so button will be disabled on modal close)
+    this.checkBoxSelected = false;
+    this.checkedInputs.forEach(input => input.checked = false);
+    this.checkedInputs = [];
   }
 
-  onSelectModalFeatures(checked: boolean, feature: Feature) {
+  onSelectModalFeatures(checked: boolean, feature: Feature, checkbox: HTMLInputElement) {
+    this.checkBoxSelected = true;
+    this.checkedInputs.push(checkbox);
     this.value = feature;
     if (checked) {
       this.fuserService.collectModalVals(this.value);
@@ -42,6 +49,8 @@ export class AssociateContainerComponent implements OnInit {
       //if unchecking a value, remove it from things to be added to modal
       this.fuserService.removeFromModalVals(this.value);
     }
+
+
   }
 
 }

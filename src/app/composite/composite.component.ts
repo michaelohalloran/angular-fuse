@@ -92,10 +92,6 @@ export class CompositeComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleAnimation(e: any) {
-    console.log('toggle evt: ', e);
-  }
-
   ngOnDestroy() {
     this.optionsSubscription.unsubscribe();
     this.modalSubscription.unsubscribe();

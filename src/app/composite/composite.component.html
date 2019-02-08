@@ -16,7 +16,6 @@
           class="flex-cell" 
           *ngFor="let feature of features; let i2 = index" 
           (click)="onSetComposite(feature, key, i2)"
-          (click)="toggleAnimation($event)" 
           [ngStyle]="{backgroundColor: feature.bgColor}"
         >
           {{feature[key]}}

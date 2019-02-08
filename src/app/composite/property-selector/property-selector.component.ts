@@ -18,9 +18,9 @@ export class PropertySelectorComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     console.log('fired on changes ', changes);
     const {previousValue, currentValue, firstChange} = changes.displayVal;
-    // this.changeDisplay = (previousValue !== currentValue && !firstChange) ? true : false;
+    this.changeDisplay = (previousValue !== currentValue && !firstChange) ? true : false;
     // this.changeDisplay = !this.changeDisplay;
-    this.changeDisplay = true;
+    // this.changeDisplay = true;
     // setTimeout(()=> {
     //   console.log('hit setTimeout');
     //   this.changeDisplay = false;
