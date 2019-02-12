@@ -42,6 +42,12 @@ export class CompositeComponent implements OnInit, OnDestroy {
     this.selectedKey = key;
   }
 
+  setColumnWidth() {
+    //100% / this.features.length + 2, e.g., 3 features should have 100/5 = 20% width
+    let cellWidth = `${100/(this.features.length + 2)}%`;
+    return cellWidth;
+  }
+
   onSetComposite(feature: string, key: string, idx: number) {
     this.onSelectKey(key);
     this.selectionColor = feature['bgColor'];
