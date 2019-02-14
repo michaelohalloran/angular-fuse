@@ -32,15 +32,34 @@ export class FuserService {
     })
   }
 
-  // https://repl.it/@mike314151/HSL-Color-Generator?language=html&folderId=
-  generateRandomColor = () => {
-
+  buildRandomHexColor = () => {
     let letters = '0123456789abcdef'.split('');
     let color = '#';
     for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random()*16)];
+      let hexColor = letters[Math.floor(Math.random()*16)];
+      color += hexColor;
     }
     return color;
+  }
+
+  // https://repl.it/@mike314151/HSL-Color-Generator?language=html&folderId=
+  generateRandomColor = () => {
+
+    let hex;
+    for(let i = 0; i < this.features.length; i++) {
+      hex = this.buildRandomHexColor();
+      //if this hex color hasn't been used already, push it into the array
+      if (!(this.colors.includes(hex))) {
+        this.colors.push(hex);
+      } else {
+        //if it has been used, make a new and distinct hexcolor
+        hex = this.buildRandomHexColor();
+        this.colors.push(hex)
+      }
+    }
+    //clear colors array when colors have been set
+    this.colors = [];
+    return hex;
   }
 
   getFeatures() {
