@@ -8,9 +8,9 @@ import { Feature } from '../feature.model';
 export class FuserService {
 
   private features: Feature[] = [
-    {id: 1, lat: 39, lng: 'east', selected: false, bgColor:'#feb236',},
-    {id: 2, lat: 42, lng: 'north', selected: false, bgColor:'#d64161',},
-    {id: 3, lat: 97, lng: 'west', selected: false, bgColor:'#ff7b25',},
+    {id: 1, lat: 39, lng: 'east', selected: false},
+    {id: 2, lat: 42, lng: 'north', selected: false},
+    {id: 3, lat: 97, lng: 'west', selected: false},
   ];
 
   private keys: string[] = [];
@@ -19,8 +19,29 @@ export class FuserService {
   modalOpened = new Subject<boolean>();
   optionsChanged = new Subject<any[]>();
   private modalVals: Feature[] = [];
+  private colors: string[] = [];
 
-  constructor() { }
+
+  constructor() { 
+    this.features = this.features.map(feature => {
+      //check colors array to be sure color hasn't been used yet
+      //push new color into colors array, delete old ones (when?)
+      //check that color's rgb (or hex) values are not too close/similar by setting some limits on closeness
+      feature.bgColor = this.generateRandomColor();
+      return feature;
+    })
+  }
+
+  // https://repl.it/@mike314151/HSL-Color-Generator?language=html&folderId=
+  generateRandomColor = () => {
+
+    let letters = '0123456789abcdef'.split('');
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random()*16)];
+    }
+    return color;
+  }
 
   getFeatures() {
     //slice, because features should not change (e.g., it's loaded from some external API call)
