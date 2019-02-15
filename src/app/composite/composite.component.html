@@ -25,6 +25,9 @@
         </div>
         <property-selector
           class="flex-cell"
+          [ngClass]="{
+            'selected-val' : displayChanged && (key === selectedKey) 
+          }"
           [displayVal]="setDisplay(key)"
           [ngStyle]="{
             backgroundColor: setColor(key),
@@ -39,7 +42,7 @@
     <button class="save-btn" [disabled]="!options.length" (click)="onStoreComposite()">Save</button>
   
   <li >selectedKey: {{selectedKey}}</li>
-  <li>selection: {{selectedCell}}</li>
+  <li>selection: {{selectedCellValue}}</li>
   <pre [ngStyle]="{backgroundColor: 'darkgoldenrod'}">options: {{options | json}}</pre>
   <pre [ngStyle]="{backgroundColor: 'darkgoldenrod'}">saved: {{savedComps | json}}</pre>
 </div>

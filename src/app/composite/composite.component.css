@@ -45,6 +45,21 @@
     background-color: cornflowerblue;
     margin: 2% 0;
     animation: fadeIn 2s ease-in-out;
+    border: none;
+}
+
+.save-btn:hover:enabled {
+    color: cornflowerblue;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 1s;
+}
+
+.save-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
 }
 
 /* button:hover {
@@ -68,10 +83,20 @@ li:nth-of-type(2) {
     animation: slideInLeft 1s ease;
 }
 
+.selected-val {
+    animation: fadeIn 2s ease;
+}
+
 
 @keyframes fadeIn {
     0% {
         opacity: 0;
+        background: white;
+    }
+
+    50% {
+        opacity: 0.5;
+        background: white;
     }
 
     100% {

@@ -18,6 +18,7 @@ export class FuserService {
   private storedComposites: any[] = [];
   modalOpened = new Subject<boolean>();
   optionsChanged = new Subject<any[]>();
+  displayChanged = new Subject<boolean>();
   private modalVals: Feature[] = [];
   private colors: string[] = [];
 
@@ -129,6 +130,14 @@ export class FuserService {
     //clear options after each, so it's not overwritten
     this.resetOptions();
     this.optionsChanged.next(this.options);
+  }
+
+  toggleDisplayStatus = () => {
+    this.displayChanged.next(true);
+    setTimeout(()=> {
+      this.displayChanged.next(false);
+    }, 2000)
+
   }
 
   sendModalVals() {

@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FuserService } from './fuser.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'composite',
@@ -12,13 +13,15 @@ export class CompositeComponent implements OnInit, OnDestroy {
   private rowKeys: string[] = [];
 
   private selectedKey: string = '';
-  private selectedCell: any;
+  private selectedCellValue: any;
   private selectionColor: string;
   private options: any[] = [];
-  private optionsSubscription: any;
+  private optionsSubscription: Subscription;
   private savedComps: any[];
   private modalOpened: boolean;
-  private modalSubscription: any;
+  private modalSubscription: Subscription;
+  private displaySubscription: Subscription;
+  private displayChanged: boolean = false;
 
 
   constructor(private fuserService: FuserService) { }
@@ -33,6 +36,13 @@ export class CompositeComponent implements OnInit, OnDestroy {
     )
     this.modalSubscription = this.fuserService.modalOpened.subscribe(
       (openStatus: boolean) => this.modalOpened = openStatus
+    )
+
+    this.displaySubscription = this.fuserService.displayChanged.subscribe(
+      (bool: boolean) => {
+        this.displayChanged = bool;
+        console.log('bool from fuser: ', bool);
+      }
     )
 
     this.rowKeys = this.fuserService.makeRowKeys();
@@ -51,10 +61,11 @@ export class CompositeComponent implements OnInit, OnDestroy {
   onSetComposite(feature: string, key: string, idx: number) {
     this.onSelectKey(key);
     this.selectionColor = feature['bgColor'];
-    this.selectedCell = feature[this.selectedKey];
+    this.selectedCellValue = feature[this.selectedKey];
     this.toggleSelected(this.features, idx);
-    //push selectedCell object into options array, with value and key
-    let newestOption = {val: this.selectedCell, row: this.selectedKey, color: this.selectionColor};
+    //push selectedCellValue object into options array, with value and key
+    let newestOption = {val: this.selectedCellValue, row: this.selectedKey, color: this.selectionColor};
+    this.fuserService.toggleDisplayStatus();
     this.fuserService.updateOptions(newestOption);
   }
 
@@ -101,6 +112,7 @@ export class CompositeComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.optionsSubscription.unsubscribe();
     this.modalSubscription.unsubscribe();
+    this.displaySubscription.unsubscribe();
   }
 
 }
